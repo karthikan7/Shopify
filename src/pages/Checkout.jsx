@@ -46,7 +46,7 @@ const Checkout = () => {
     setLoading(true);
 
     try {
-      const orderRes = await fetch('http://localhost:5000/payment/order', {
+      const orderRes = await fetch('https://shopify-backend-b7cn.onrender.com/payment/order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: totalAmount })
@@ -67,7 +67,7 @@ const Checkout = () => {
         description: 'Order Payment',
         order_id: orderData.id,
         handler: async (response) => {
-          const verifyRes = await fetch('http://localhost:5000/payment/verify', {
+          const verifyRes = await fetch('https://shopify-backend-b7cn.onrender.com/payment/verify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -85,7 +85,7 @@ const Checkout = () => {
               price: item.price
             }));
 
-            const orderRes2 = await fetch('http://localhost:5000/order', {
+            const orderRes2 = await fetch('https://shopify-backend-b7cn.onrender.com/order', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               credentials: 'include',

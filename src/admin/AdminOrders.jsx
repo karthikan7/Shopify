@@ -8,7 +8,7 @@ const AdminOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await fetch('http://localhost:5000/order', {
+        const res = await fetch('https://shopify-backend-b7cn.onrender.com/order', {
           credentials: 'include'
         });
 
@@ -24,7 +24,7 @@ const AdminOrders = () => {
 
   const updateStatus = async (id, status) => {
     try {
-      const res = await fetch(`http://localhost:5000/order/${id}/status`, {
+      const res = await fetch(`https://shopify-backend-b7cn.onrender.com/order/${id}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

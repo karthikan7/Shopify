@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch('http://localhost:5000/auth/logout', {
+      await fetch('https://shopify-backend-b7cn.onrender.com/auth/logout', {
         method: 'POST',
         credentials: 'include'
       });

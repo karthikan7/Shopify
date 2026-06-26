@@ -31,7 +31,7 @@ const AddProduct = () => {
     data.append('image', image);
 
     try {
-      const res = await fetch('http://localhost:5000/products', {
+      const res = await fetch('https://shopify-backend-b7cn.onrender.com/products', {
         method: 'POST',
         credentials: 'include',
         body: data

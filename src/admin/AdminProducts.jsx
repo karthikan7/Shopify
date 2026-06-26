@@ -9,7 +9,7 @@ const AdminProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('http://localhost:5000/products');
+        const res = await fetch('https://shopify-backend-b7cn.onrender.com/products');
         const data = await res.json();
         setProducts(Array.isArray(data) ? data : []);
       } catch (error) {
@@ -23,7 +23,7 @@ const AdminProducts = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you strictly sure you want to delete this?')) {
       try {
-        const res = await fetch(`http://localhost:5000/products/${id}`, {
+        const res = await fetch(`https://shopify-backend-b7cn.onrender.com/products/${id}`, {
           method: 'DELETE',
           credentials: 'include'
         });

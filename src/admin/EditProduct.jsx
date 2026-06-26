@@ -18,7 +18,7 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/products/${id}`);
+        const res = await fetch(`https://shopify-backend-b7cn.onrender.com/products/${id}`);
         const data = await res.json();
         setFormData({
           name: data.name,
@@ -55,7 +55,7 @@ const EditProduct = () => {
     if (image) data.append('image', image);
 
     try {
-      const res = await fetch(`http://localhost:5000/products/${id}`, {
+      const res = await fetch(`https://shopify-backend-b7cn.onrender.com/products/${id}`, {
         method: 'PUT',
         credentials: 'include',
         body: data

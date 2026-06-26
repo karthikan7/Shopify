@@ -8,7 +8,7 @@ const AdminUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch('http://localhost:5000/auth/users', {
+        const res = await fetch('https://shopify-backend-b7cn.onrender.com/auth/users', {
           credentials: 'include'
         });
 

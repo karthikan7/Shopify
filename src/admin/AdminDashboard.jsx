@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch('http://localhost:5000/analytics', {
+        const res = await fetch('https://shopify-backend-b7cn.onrender.com/analytics', {
           credentials: 'include'
         });
         const data = await res.json();

@@ -10,7 +10,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('http://localhost:5000/products');
+        const res = await fetch('https://shopify-backend-b7cn.onrender.com/products');
         const data = await res.json();
         setProducts(data);
       } catch (error) {

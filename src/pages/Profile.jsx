@@ -13,7 +13,7 @@ const Profile = () => {
 
     const fetchOrders = async () => {
       try {
-        const res = await fetch('http://localhost:5000/order/getmyorders', {
+        const res = await fetch('https://shopify-backend-b7cn.onrender.com/order/getmyorders', {
           credentials: 'include'
         });
         const data = await res.json();

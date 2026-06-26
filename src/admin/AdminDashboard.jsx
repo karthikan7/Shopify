@@ -4,25 +4,44 @@ import { AuthContext } from '../context/AuthContext';
 
 const AdminDashboard = () => {
   const { user } = useContext(AuthContext);
-  const [stats, setStats] = useState({ totalOrders: 0, totalProducts: 0, totalUsers: 0, totalRevenue: 0 });
+
+  const [stats, setStats] = useState({
+    totalOrders: 0,
+    totalProducts: 0,
+    totalUsers: 0,
+    totalRevenue: 0
+  });
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch('https://shopify-backend-b7cn.onrender.com/analytics', {
-          credentials: 'include'
-        });
+        const res = await fetch(
+          'https://shopify-backend-b7cn.onrender.com/analytics',
+          { credentials: 'include' }
+        );
+
         const data = await res.json();
-        setStats(data);
+
+        setStats({
+          totalOrders: data.totalOrders || 0,
+          totalProducts: data.totalProducts || 0,
+          totalUsers: data.totalUsers || 0,
+          totalRevenue: data.totalRevenue || 0
+        });
       } catch (error) {
         console.error('Error fetching stats:', error);
       }
     };
+
     fetchStats();
   }, []);
 
   if (!user || user.role !== 'admin') {
-    return <div style={{ textAlign: 'center', margin: '100px', color: '#ef4444' }}>Access Denied</div>;
+    return (
+      <div style={{ textAlign: 'center', margin: '100px', color: '#ef4444' }}>
+        Access Denied
+      </div>
+    );
   }
 
   const cardStyle = {
@@ -48,24 +67,37 @@ const AdminDashboard = () => {
 
   return (
     <div style={{ maxWidth: '1200px', margin: '40px auto', padding: '0 20px' }}>
-      <h2 style={{ color: '#f97316', marginBottom: '25px' }}>Admin Dashboard</h2>
+      <h2 style={{ color: '#f97316', marginBottom: '25px' }}>
+        Admin Dashboard
+      </h2>
 
       <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', marginBottom: '30px' }}>
         <div style={cardStyle}>
           <p style={{ color: '#a1a1aa', marginBottom: '8px' }}>Total Orders</p>
-          <h3 style={{ color: '#fff', fontSize: '2rem' }}>{stats.totalOrders}</h3>
+          <h3 style={{ color: '#fff', fontSize: '2rem' }}>
+            {stats.totalOrders}
+          </h3>
         </div>
+
         <div style={cardStyle}>
           <p style={{ color: '#a1a1aa', marginBottom: '8px' }}>Total Products</p>
-          <h3 style={{ color: '#fff', fontSize: '2rem' }}>{stats.totalProducts}</h3>
+          <h3 style={{ color: '#fff', fontSize: '2rem' }}>
+            {stats.totalProducts}
+          </h3>
         </div>
+
         <div style={cardStyle}>
           <p style={{ color: '#a1a1aa', marginBottom: '8px' }}>Total Users</p>
-          <h3 style={{ color: '#fff', fontSize: '2rem' }}>{stats.totalUsers}</h3>
+          <h3 style={{ color: '#fff', fontSize: '2rem' }}>
+            {stats.totalUsers}
+          </h3>
         </div>
+
         <div style={cardStyle}>
           <p style={{ color: '#a1a1aa', marginBottom: '8px' }}>Total Revenue</p>
-          <h3 style={{ color: '#10b981', fontSize: '2rem' }}>₹{stats.totalRevenue.toFixed(2)}</h3>
+          <h3 style={{ color: '#10b981', fontSize: '2rem' }}>
+            ₹{Number(stats.totalRevenue || 0).toFixed(2)}
+          </h3>
         </div>
       </div>
 
